@@ -23,31 +23,23 @@ Then add the library to your dependencies
 ### Setup        
         
 ``` kotlin
-private fun setup() {
-    val drawerXArrowDrawable = DrawerXArrowDrawable(this, DrawerXArrowDrawable.Mode.DRAWER).apply {
-        color = Color.WHITE
-    }
-    supportActionBar?.setHomeAsUpIndicator(drawerXArrowDrawable)
-    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+val drawerXArrowDrawable = DrawerXArrowDrawable(this, DrawerXArrowDrawable.Mode.DRAWER).apply {
+    color = Color.WHITE
 }
+supportActionBar?.setHomeAsUpIndicator(drawerXArrowDrawable)
+supportActionBar?.setDisplayHomeAsUpEnabled(true)
 ```
 
 ### Animate
 
 ``` kotlin
-private fun animateToArrow() {
-    drawerXArrowDrawable?.setMode(DrawerXArrowDrawable.Mode.ARROW)
-}
+drawerXArrowDrawable?.setMode(DrawerXArrowDrawable.Mode.ARROW)
 ```
 
 ``` kotlin
-private fun animateToDrawer() {
-    drawerXArrowDrawable?.setMode(DrawerXArrowDrawable.Mode.Drawer)
-}
+drawerXArrowDrawable?.setMode(DrawerXArrowDrawable.Mode.Drawer)
 ```
 
 ``` kotlin
-private fun animateToX() {
-    drawerXArrowDrawable?.setMode(DrawerXArrowDrawable.Mode.X)
-}
+drawerXArrowDrawable?.setMode(DrawerXArrowDrawable.Mode.X)
 ```
