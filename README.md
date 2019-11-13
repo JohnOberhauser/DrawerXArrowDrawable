@@ -20,7 +20,7 @@ Then add the library to your dependencies
     
 ## Usage
 
-        
+### Setup        
         
 ``` kotlin
 val drawerXArrowDrawable = DrawerXArrowDrawable(this, DrawerXArrowDrawable.Mode.DRAWER).apply {
@@ -28,4 +28,18 @@ val drawerXArrowDrawable = DrawerXArrowDrawable(this, DrawerXArrowDrawable.Mode.
 }
 supportActionBar?.setHomeAsUpIndicator(drawerXArrowDrawable)
 supportActionBar?.setDisplayHomeAsUpEnabled(true)
+```
+
+### Animate
+
+``` kotlin
+drawerXArrowDrawable?.setMode(DrawerXArrowDrawable.Mode.ARROW)
+```
+
+``` kotlin
+drawerXArrowDrawable?.setMode(DrawerXArrowDrawable.Mode.Drawer)
+```
+
+``` kotlin
+drawerXArrowDrawable?.setMode(DrawerXArrowDrawable.Mode.X)
 ```
