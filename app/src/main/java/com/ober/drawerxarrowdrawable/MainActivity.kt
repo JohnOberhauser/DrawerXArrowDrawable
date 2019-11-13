@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(drawerXArrowDrawable)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         randomlySetMode()
-
-        zoomed_image.setImageDrawable(DrawerXArrowDrawable(this, DrawerXArrowDrawable.Mode.ARROW))
     }
 
     private fun randomlySetMode() {

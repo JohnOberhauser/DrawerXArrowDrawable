@@ -81,6 +81,8 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
 
     private var isFlipped = false
 
+    var defaultDuration: Long = 250
+
     init {
         init()
     }
@@ -218,14 +220,14 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
      * Linear interpolate between a and b with parameter t.
      */
     private fun lerp(a: Float, b: Float, t: Float): Float {
-        return a + (b - a) * t
+        return a + ((b - a) * t)
     }
 
-    fun setMode(mode: Mode, duration: Long = 250) {
+    fun setMode(mode: Mode, duration: Long = defaultDuration) {
         setMode(mode, duration, false)
     }
 
-    private fun setMode(mode: Mode, duration: Long = 250, override: Boolean) {
+    private fun setMode(mode: Mode, duration: Long, override: Boolean) {
         if (this.mode == mode && !override) {
             return
         }
@@ -240,32 +242,40 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
 
         currentRotation = transitioningRotation
 
+        if (spin) {
+            when (currentRotation) {
+                in 0.0..90.0 -> {
+                    targetRotation = 180f
+                    isFlipped = false
+                }
+                in 90.0..270.0 -> {
+                    targetRotation = 360f
+                    isFlipped = true
+                }
+                else -> {
+                    targetRotation = 540f
+                    isFlipped = false
+                }
+            }
+        }
+
         when (mode) {
             Mode.DRAWER -> {
                 targetDrawer()
             }
             Mode.ARROW -> {
-                targetArrow()
+                if (spin) {
+                    if (isFlipped) {
+                        targetLeftArrow()
+                    } else {
+                        targetRightArrow()
+                    }
+                } else {
+                    targetLeftArrow()
+                }
             }
             Mode.X -> {
                 targetX()
-            }
-        }
-
-        if (spin) {
-            when (currentRotation) {
-                in 0.0..90.0 -> {
-                    targetRotation = 180f
-                    isFlipped = true
-                }
-                in 90.0..270.0 -> {
-                    targetRotation = 360f
-                    isFlipped = false
-                }
-                else -> {
-                    targetRotation = 540f
-                    isFlipped = true
-                }
             }
         }
 
@@ -313,18 +323,6 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
 
     private fun drawerCenterY(): Float {
         return centerY()
-    }
-
-    private fun targetArrow() {
-        if (spin) {
-            if (isFlipped) {
-                targetLeftArrow()
-            } else {
-                targetRightArrow()
-            }
-        } else {
-            targetLeftArrow()
-        }
     }
 
     private fun targetLeftArrow() {
