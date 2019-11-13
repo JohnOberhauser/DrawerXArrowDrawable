@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
 android {
     compileSdkVersion 28
 
@@ -38,27 +41,30 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+repositories {
+    mavenCentral()
+}
 
 ext {
     bintrayRepo = 'Android-Libs'
-    bintrayName = 'VMR-Link'
+    bintrayName = 'DrawerXArrowDrawable'
 
     publishedGroupId = 'com.ober'
-    libraryName = 'VMR-Link'
-    artifact = 'vmr-link'
+    libraryName = 'DrawerXArrowDrawable'
+    artifact = 'drawerxarrowdrawable'
 
-    libraryDescription = 'A link between your view model and your repository layer'
+    libraryDescription = 'A menu drawable with easy animations to hamburger, arrow, and x'
 
-    siteUrl = 'https://github.com/JohnOberhauser/VMR-Link'
-    gitUrl = 'https://github.com/JohnOberhauser/VMR-Link.git'
+    siteUrl = 'https://github.com/JohnOberhauser/DrawerXArrowDrawable'
+    gitUrl = 'https://github.com/JohnOberhauser/DrawerXArrowDrawable.git'
 
-    libraryVersion = '0.1.5'
+    libraryVersion = '0.1.2'
 
     developerId = 'JohnOberhauser'
     developerName = 'John Oberhauser'
 
     licenseName = 'GNU General Public License v3.0'
-    licenseUrl = 'https://raw.githubusercontent.com/JohnOberhauser/VMR-Link/master/LICENSE'
+    licenseUrl = 'https://raw.githubusercontent.com/JohnOberhauser/DrawerXArrowDrawable/master/LICENSE'
     allLicenses = ["gpl-3.0"]
 }
 

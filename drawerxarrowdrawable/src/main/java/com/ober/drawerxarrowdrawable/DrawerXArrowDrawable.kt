@@ -40,26 +40,6 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
     private var transitioningBottomBarAPosition = Position(0f, 0f)
     private var transitioningBottomBarBPosition = Position(0f, 0f)
 
-    private var gap = 0f
-        set(value) {
-            if (field != value) {
-                field = value
-                invalidateSelf()
-            }
-        }
-    private var spin = true
-        set(value) {
-            if (field != value) {
-                field = value
-                invalidateSelf()
-            }
-        }
-
-    private var size = 0
-    private var barLength = 0f
-    private var arrowShaftLength = 0f
-    private var arrowHeadLength = 0f
-
     private var currentRotation = 0f
     private var targetRotation = 0f
     private var transitioningRotation = 0f
@@ -80,8 +60,47 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
         }
 
     private var isFlipped = false
+    private var size = 0
+
+    var gap = 0f
+        set(value) {
+            if (field != value) {
+                field = value
+                invalidateSelf()
+            }
+        }
+
+    var spin = true
+        set(value) {
+            if (field != value) {
+                field = value
+                invalidateSelf()
+            }
+        }
+
+    var barLength = 0f
+    var arrowShaftLength = 0f
+    var arrowHeadLength = 0f
 
     var defaultDuration: Long = 250
+
+    var color: Int
+        set(@ColorInt value) {
+            if (value != paint.color) {
+                paint.color = value
+                invalidateSelf()
+            }
+        }
+        get() = paint.color
+
+    var barThickness: Float
+        set(value) {
+            if (paint.strokeWidth != value) {
+                paint.strokeWidth = value
+                invalidateSelf()
+            }
+        }
+        get() = paint.strokeWidth
 
     init {
         init()
@@ -100,8 +119,8 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
             R.style.Base_Widget_AppCompat_DrawerArrowToggle
         )
 
-        setColor(a.getColor(R.styleable.DrawerArrowToggle_color, 0))
-        setBarThickness(a.getDimension(R.styleable.DrawerArrowToggle_thickness, 0f))
+        color = a.getColor(R.styleable.DrawerArrowToggle_color, 0)
+        barThickness = a.getDimension(R.styleable.DrawerArrowToggle_thickness, 0f)
         spin = a.getBoolean(R.styleable.DrawerArrowToggle_spinBars, true)
         // round this because having this floating may cause bad measurements
         gap = a.getDimension(R.styleable.DrawerArrowToggle_gapBetweenBars, 0f).roundToInt().toFloat()
@@ -127,20 +146,6 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
         }
     }
 
-    fun setColor(@ColorInt color: Int) {
-        if (color != paint.color) {
-            paint.color = color
-            invalidateSelf()
-        }
-    }
-
-    fun setBarThickness(width: Float) {
-        if (paint.strokeWidth != width) {
-            paint.strokeWidth = width
-            invalidateSelf()
-        }
-    }
-
     override fun getOpacity(): Int {
         return PixelFormat.TRANSLUCENT
     }
@@ -148,6 +153,14 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
     override fun setColorFilter(colorFilter: ColorFilter?) {
         paint.colorFilter = colorFilter
         invalidateSelf()
+    }
+
+    override fun getIntrinsicWidth(): Int {
+        return size
+    }
+
+    override fun getIntrinsicHeight(): Int {
+        return size
     }
 
     override fun draw(canvas: Canvas) {
