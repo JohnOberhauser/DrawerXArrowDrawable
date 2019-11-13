@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.ober.drawerxarrowdrawable", appContext.packageName)
+        assertEquals("com.ober.drawerxarrowdrawable2.test", appContext.packageName)
     }
 }
