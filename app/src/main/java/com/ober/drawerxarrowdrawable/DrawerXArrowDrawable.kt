@@ -253,15 +253,19 @@ class DrawerXArrowDrawable(private val context: Context, private var mode: Mode)
         }
 
         if (spin) {
-            if (currentRotation > 0 && currentRotation <= 180) {
-                targetRotation = currentRotation + 180 + (180 - currentRotation)
-                isFlipped = false
-            } else {
-                targetRotation = currentRotation + 180 + (360 - currentRotation)
-                if (targetRotation > 360) {
-                    targetRotation -= 360
+            when (currentRotation) {
+                in 0.0..90.0 -> {
+                    targetRotation = 180f
+                    isFlipped = true
                 }
-                isFlipped = true
+                in 90.0..270.0 -> {
+                    targetRotation = 360f
+                    isFlipped = false
+                }
+                else -> {
+                    targetRotation = 540f
+                    isFlipped = true
+                }
             }
         }
 
