@@ -3,6 +3,9 @@ A simple Drawable for your drawer that easily animates between a hamburger, arro
 
 ![Alt text](.github/.readmeImages/demo.gif)
 
+## Purpose
+The DrawerArrowDrawable class in Android doesn't include animations to an X.  It also requires you to use an ObjectAnimator to do the animations.  With DrawerXArrowDrawable, you get a hamburger, arrow, and X.  And you don't need to worry about ObjectAnimators.
+
 ## To add to project:
 
 Be sure to add the jcenter repository
