@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             0 -> {
                 Handler(Looper.getMainLooper()).postDelayed(
                     {
-                        drawerXArrowDrawable.setMode(DrawerXArrowDrawable.Mode.DRAWER, 1500)
+                        drawerXArrowDrawable.setMode(DrawerXArrowDrawable.Mode.DRAWER)
                         randomlySetMode()
                     },
                     1000
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             1 -> {
                 Handler(Looper.getMainLooper()).postDelayed(
                     {
-                        drawerXArrowDrawable.setMode(DrawerXArrowDrawable.Mode.ARROW, 1500)
+                        drawerXArrowDrawable.setMode(DrawerXArrowDrawable.Mode.ARROW)
                         randomlySetMode()
                     },
                     1000
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             2 -> {
                 Handler(Looper.getMainLooper()).postDelayed(
                     {
-                        drawerXArrowDrawable.setMode(DrawerXArrowDrawable.Mode.X, 1500)
+                        drawerXArrowDrawable.setMode(DrawerXArrowDrawable.Mode.X)
                         randomlySetMode()
                     },
                     1000
